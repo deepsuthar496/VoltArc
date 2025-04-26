@@ -21,23 +21,23 @@ Help me deploy it on the Chrome Web Store.
 
 ### 🚀 Manual Installation
 
-#### Option 1: Install via `.crx` file  
-1. **Download the latest `.crx` file** from the [Releases](#) section of this repository.  
-2. Open Chrome and go to `chrome://extensions/`  
-3. Enable **"Developer mode"** in the top right corner  
-4. **Drag and drop** the `.crx` file into the Chrome Extensions page  
-5. Click **"Add extension"** when prompted  
-
-> ⚠️ Chrome may block `.crx` installs from "unauthorized sources" (like GitHub). If that happens, use Option 2 below.
-
----
-
-#### Option 2: Load Unpacked (Recommended for Development)
+#### Option 1: Load Unpacked (Recommended)
 1. **Download and unzip** the source code from this repository (or clone it)  
 2. Open Chrome and go to `chrome://extensions/`  
 3. Enable **"Developer mode"**  
 4. Click **"Load unpacked"** and select the extension folder  
 5. The extension should now be installed and visible in your toolbar  
+
+---
+#### Option 2: Install via `.crx` file  
+1. Download the latest .crx file from the <a href="https://github.com/deepsuthar496/VoltArc/releases/" target="_blank">Releases</a> section of this repository. 
+2. Open Chrome and go to `chrome://extensions/`  
+3. Enable **"Developer mode"** in the top right corner  
+4. **Drag and drop** the `.crx` file into the Chrome Extensions page  
+5. Click **"Add extension"** when prompted  
+
+> ⚠️ Chrome may block `.crx` installs from "unauthorized sources" (like GitHub). If that happens, use above Option 1.
+
 
 ## 💡 Usage
 
