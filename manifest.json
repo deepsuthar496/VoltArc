@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "VoltArc - ChatGPT Prompt Enhancer",
+  "version": "1.0",
+  "description": "Enhance your ChatGPT prompts with a single click",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": [
+    "https://chat.openai.com/*",
+    "https://chatgpt.com/*",
+    "https://openrouter.ai/*",
+    "https://text.pollinations.ai/*"
+  ],
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
+      "js": ["js/content.js"],
+      "css": ["css/content.css"]
+    }
+  ]
+}

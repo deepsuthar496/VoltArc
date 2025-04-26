@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoltArc</title>
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      width: 340px;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #18181b;
+    }
+      .popup-container {
+      padding: 20px;
+      max-width: 100%;
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e4e4e7;
+      padding-bottom: 16px;
+    }
+    
+    .logo {
+      width: 40px;
+      height: 40px;
+      margin-right: 14px;
+      border-radius: 8px;
+    }
+    
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0;
+      color: #10a37f;
+    }
+    
+    .subtitle {
+      font-size: 13px;
+      color: #71717a;
+      margin: 0 0 20px 0;
+    }
+    
+    .info-section {
+      background-color: #f4f4f5;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      line-height: 1.5;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #52525b;
+    }
+      select, textarea, input.text-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #e4e4e7;
+      background-color: white;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+      color: #18181b;
+      font-family: inherit;
+    }
+    
+    select:focus, textarea:focus, input.text-input:focus {
+      outline: none;
+      border-color: #10a37f;
+      box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.2);
+    }
+    
+    textarea {
+      height: 120px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+    
+    .button {
+      background-color: #10a37f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 2px rgba(16, 163, 127, 0.1);
+    }
+    
+    .button:hover {
+      background-color: #0d8c6d;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px rgba(16, 163, 127, 0.1);
+    }
+    
+    .button:active {
+      transform: translateY(0);
+    }
+    
+    .success-message {
+      background-color: rgba(16, 163, 127, 0.1);
+      color: #10a37f;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 13px;
+      text-align: center;
+      margin: 12px 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+      .success-message.visible {
+      opacity: 1;
+    }
+    
+    .divider {
+      height: 1px;
+      background-color: #e4e4e7;
+      margin: 16px 0;
+    }
+    
+    .footer {
+      font-size: 12px;
+      color: #71717a;
+      text-align: center;
+      margin-top: 16px;
+    }
+      /* Custom Dropdown Styles */
+    .custom-select-container {
+      position: relative;
+      width: 100%;
+    }
+    
+    .custom-select-button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #e4e4e7;
+      background-color: white;
+      font-size: 14px;
+      cursor: pointer;
+      box-sizing: border-box;
+      color: #18181b;
+    }
+    
+    .custom-select-button:hover {
+      border-color: #10a37f;
+    }
+    
+    .custom-select-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      max-height: 240px;
+      overflow-y: auto;
+      border: 1px solid #e4e4e7;
+      border-radius: 8px;
+      background-color: white;
+      margin-top: 4px;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+    }
+    
+    .search-container {
+      padding: 10px;
+      position: sticky;
+      top: 0;
+      background-color: white;
+      border-bottom: 1px solid #e4e4e7;
+      display: flex;
+      align-items: center;
+    }
+    
+    .dropdown-search {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #e4e4e7;
+      font-size: 14px;
+      padding-left: 30px;
+    }
+    
+    .dropdown-search:focus {
+      outline: none;
+      border-color: #10a37f;
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      font-size: 12px;
+    }
+    
+    .model-options-container {
+      padding: 5px 0;
+    }
+    
+    .model-optgroup {
+      margin-bottom: 5px;
+    }
+    
+    .model-optgroup-label {
+      padding: 5px 10px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #71717a;
+      background-color: #f9f9f9;
+    }
+    
+    .model-option {
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    .model-option:hover {
+      background-color: #f4f4f5;
+    }
+    
+    .model-option.selected {
+      background-color: rgba(16, 163, 127, 0.1);
+      color: #10a37f;
+    }
+      @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #18181b;
+        color: #f4f4f5;
+      }
+      
+      .header {
+        border-bottom-color: #27272a;
+      }
+      
+      .info-section {
+        background-color: #27272a;
+      }
+      
+      label {
+        color: #a1a1aa;
+      }
+      
+      select, textarea, input.text-input, .dropdown-search {
+        background-color: #27272a;
+        border-color: #3f3f46;
+        color: #f4f4f5;
+      }
+      
+      select:focus, textarea:focus, input.text-input:focus, .dropdown-search:focus {
+        border-color: #10a37f;
+        box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.3);
+      }
+      
+      .custom-select-button {
+        background-color: #27272a;
+        border-color: #3f3f46;
+        color: #f4f4f5;
+      }
+      
+      .custom-select-dropdown {
+        background-color: #27272a;
+        border-color: #3f3f46;
+      }
+      
+      .search-container {
+        background-color: #27272a;
+        border-color: #3f3f46;
+      }
+      
+      .model-optgroup-label {
+        background-color: #1f1f23;
+        color: #a1a1aa;
+      }
+      
+      .model-option:hover {
+        background-color: #27272a;
+      }
+      
+      .model-option.selected {
+        background-color: rgba(16, 163, 127, 0.2);
+      }
+      
+      .divider {
+        background-color: #27272a;
+      }
+      
+      .success-message {
+        background-color: rgba(16, 163, 127, 0.15);
+      }
+    }
+  </style>
+</head>
+<body>  <div class="popup-container">
+    <div class="header">
+      <img src="images/icon48.png" alt="VoltArc Logo" class="logo">
+      <h1>VoltArc</h1>
+    </div>
+    
+    <p class="subtitle">ChatGPT Prompt Enhancer</p>
+    
+    <div class="info-section">
+      <p>This extension adds an enhance button to ChatGPT's interface that transforms your basic prompts into highly detailed, optimized instructions.</p>
+    </div>    <div class="form-group">
+      <label for="provider-select">Provider</label>
+      <select id="provider-select">
+        <option value="pollinations" data-icon="pollinations">Pollinations AI</option>
+        <option value="openrouter">OpenRouter</option>
+      </select>
+    </div>
+    
+    <style>
+      /* Provider icons styling */
+      .provider-option {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+      }
+      .provider-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+      }
+      .provider-name {
+        flex-grow: 1;
+      }
+    </style><div class="form-group">
+      <label for="model-select-btn">AI Model</label>
+      <div class="custom-select-container">
+        <div id="model-select-btn" class="custom-select-button">
+          <span id="selected-model-text">Select a model</span>
+          <span class="dropdown-arrow">▼</span>
+        </div>
+        <div class="custom-select-dropdown" id="model-dropdown" style="display: none;">
+          <div class="search-container">
+            <input type="text" id="model-search" placeholder="Search models..." class="dropdown-search">
+            <span class="search-icon">🔍</span>
+          </div>
+          <div id="model-options-container" class="model-options-container">
+            <!-- Model options will be inserted here by JavaScript -->
+          </div>
+        </div>
+        <!-- Hidden actual select for form submission -->
+        <select id="model-select" style="display: none;">
+          <option value="mistral">Mistral</option>
+          <option value="openai">OpenAI</option>
+          <option value="llama">Llama</option>
+          <option value="deepseek-reasoning">DeepSeek Reasoning</option>
+        </select>
+      </div>
+    </div>
+      <div id="openrouter-settings" class="form-group" style="display: none;">
+      <label for="openrouter-api-key">OpenRouter API Key</label>
+      <input type="password" id="openrouter-api-key" placeholder="sk-or-..." class="text-input">
+    </div>
+    
+    <div class="form-group">
+      <label for="system-prompt">System Prompt</label>
+      <textarea id="system-prompt" placeholder="Custom system prompt instructions..."></textarea>
+    </div>
+    
+    <div id="save-message" class="success-message">Settings saved successfully!</div>
+    
+    <button id="save-settings" class="button">Save Settings</button>
+      <button id="go-to-chatgpt" class="button">Go to ChatGPT</button>
+    
+    <div class="divider"></div>
+  </div>
+
+  <script src="js/popup.js"></script>
+</body>
+</html>
